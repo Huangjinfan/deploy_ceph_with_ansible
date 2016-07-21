@@ -45,6 +45,7 @@ ansible-playbook -i host.txt mon_install.yml
 
 ### Install Ceph OSD
 
+You need to edit map.txt to sure the relation between **osd-id** and **host ip**
 ```
 ansible-playbook -i host.txt osd_install.yml
 ```
