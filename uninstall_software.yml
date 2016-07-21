@@ -6,23 +6,9 @@
     copy: src=./fedora.repo dest=/etc/yum.repos.d/
   - name: copy repo
     copy: src=./fedora-updates.repo dest=/etc/yum.repos.d/
-  - name: install ceph
+  - name: uninstall ceph
     dnf: name=ceph state=absent
-  - name: install librados
+  - name: uninstall librados
     dnf: name=librados2-devel state=absent
-  - name: install c development
-    dnf: name="@Development tools" state=absent
-  - name: install gluster
-    dnf: name=glusterfs state=absent
-  - name: install gluster-server
-    dnf: name=glusterfs-server state=absent
-  - name: install glusterfs-fuse
-    dnf: name=glusterfs-fuse state=absent
-  - name: install glusterfs-api-devel
-    dnf: name=glusterfs-api-devel state=absent
-  - name: install kyotocabinet
-    dnf: name=kyotocabinet-devel state=absent
-  - name: install thrift
-    dnf: name=thrift-devel state=absent
-  - name: install fuse
+  - name: uninstall fuse
     dnf: name=fuse-devel state=absent
