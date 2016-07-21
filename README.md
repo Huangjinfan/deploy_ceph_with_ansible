@@ -51,6 +51,9 @@ ansible-playbook -i host.txt osd_install.yml
 ```
 
 ### Install Ceph MDS
+```
+ansible-playbook -i host.txt new_fs.yml
+```
 
 ```
 ansible-playbook -i host.txt mds_install.yml
