@@ -1,0 +1,12 @@
+---
+- hosts: ceph-osd
+  remote_user: root
+  tasks:
+  - name: mkdir /home/marmot/osd/
+    file: path=/home/marmot/osd/ state=directory
+  - name: copy map
+    copy: src=./map.txt dest=/home/marmot/
+  - name: mkfs osd
+    script: ./osd_install.sh
+  - name: osd start
+    command: /etc/init.d/ceph start osd

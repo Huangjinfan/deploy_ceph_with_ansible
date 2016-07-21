@@ -1,0 +1,6 @@
+---
+- hosts: ceph-mds
+  remote_user: root
+  tasks:
+  - name: mds start
+    command: /etc/init.d/ceph start mds

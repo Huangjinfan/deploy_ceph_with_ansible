@@ -1,0 +1,6 @@
+---
+- hosts: ceph-osd
+  remote_user: root
+  tasks:
+  - name: service restart
+    service: name=ceph state=restarted

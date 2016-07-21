@@ -1,0 +1,14 @@
+---
+- hosts: ceph-mon
+  remote_user: root
+  tasks:
+  - name: create cephfs data pool
+    command: ceph osd pool create cephfs_data 256
+  - name: set size of data
+    command: ceph osd pool set cephfs_data size 1
+  - name: create cephfs metadata pool
+    command: ceph osd pool create cephfs_metadata 256
+  - name: set size of metadata
+    command: ceph osd pool set cephfs_metadata size 1
+  - name: new ceph fs
+    command: ceph fs new cephfs cephfs_metadata cephfs_data

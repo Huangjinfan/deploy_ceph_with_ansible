@@ -1,0 +1,8 @@
+---
+- hosts: ceph-osd,ceph-client
+  remote_user: root
+  tasks:
+  - name: copy ceph conf
+    copy: src=./ceph.conf dest=/etc/ceph/ceph.conf
+  - name: copy hosts file
+    copy: src=./hosts dest=/etc/hosts

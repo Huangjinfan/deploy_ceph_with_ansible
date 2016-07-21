@@ -1,0 +1,28 @@
+---
+- hosts: ceph-osd
+  remote_user: root
+  tasks:
+  - name: copy repo
+    copy: src=./fedora.repo dest=/etc/yum.repos.d/
+  - name: copy repo
+    copy: src=./fedora-updates.repo dest=/etc/yum.repos.d/
+  - name: install ceph
+    dnf: name=ceph state=latest
+  - name: install librados
+    dnf: name=librados2-devel state=latest
+  - name: install c development
+    dnf: name="@Development tools" state=latest
+  - name: install gluster
+    dnf: name=glusterfs state=latest
+  - name: install gluster-server
+    dnf: name=glusterfs-server state=latest
+  - name: install glusterfs-fuse
+    dnf: name=glusterfs-fuse state=latest
+  - name: install glusterfs-api-devel
+    dnf: name=glusterfs-api-devel state=latest
+  - name: install kyotocabinet
+    dnf: name=kyotocabinet-devel state=latest
+  - name: install thrift
+    dnf: name=thrift-devel state=latest
+  - name: install fuse
+    dnf: name=fuse-devel state=latest

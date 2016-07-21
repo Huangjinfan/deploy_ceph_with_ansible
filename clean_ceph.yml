@@ -1,0 +1,18 @@
+---
+- hosts: ceph-osd
+  remote_user: root
+  tasks:
+  - name: stop ceph service
+    service: name=ceph state=stopped
+  - name: delete subvolume of btrfs
+    script: ./remove_btrfs.sh
+  - name: rm -rf /var/lib/ceph/mon,mds,osd
+    file: path=/var/lib/ceph/{{item.src}} state=absent
+    with_items:
+            - { src: "mon"}
+            - { src: "mds"}
+            - { src: "osd"}
+  - name: rm osd data
+    file: path=/home/marmot/osd/ state=absent
+  - name: rm ceph run
+    file: path=/var/run/ceph/ state=absent

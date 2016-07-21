@@ -1,0 +1,14 @@
+---
+- hosts: ceph-mon
+  remote_user: root
+  tasks:
+  - name: monmap create
+    command: monmaptool  --clobber --create --add a 10.0.1.81:6789 --fsid 34492a3b-3580-49a8-bb56-883e9a97f92d /tmp/monmap
+  - name: mkdir /var/lib/ceph/mon/ceph-a
+    file: path=/var/lib/ceph/mon/ceph-a state=directory
+  - name: mkfs mon
+    command: ceph-mon --mkfs -i a --monmap /tmp/monmap
+  - name: start mon
+    command: /etc/init.d/ceph start mon
+  - name: create osd
+    script: ./osd_create.sh
